@@ -1,50 +1,52 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: user
+  name: cart
   namespace: roboshop
 data:
-  MONGO: "true"
+  REDIS_HOST: "redis"
+  CATALOGUE_HOST: "catalogue"
+  CATALOGUE_PORT: "8080"
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user
+  name: cart
   namespace: roboshop
   labels: # these labels are deployment labels
-    app: user
+    app: cart
     project: roboshop
     tier: app
 spec:
   replicas: 1
   selector:
     matchLabels: # these labels are used to find the pods
-      app: user
+      app: cart
       project: roboshop
       tier: app
   template:
     metadata:
       labels: # these labels are pod labels
-        app: user
+        app: cart
         project: roboshop
         tier: app
     spec:
       containers:
-      - name: user
-        image: rajesh028/user:v1
+      - name: cart
+        image: rajesh028/cart:v1
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
-            name: user
+            name: cart
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: user
+  name: cart
   namespace: roboshop
 spec:
   selector:
-    app: user
+    app: cart
     project: roboshop
     tier: app
   ports:
