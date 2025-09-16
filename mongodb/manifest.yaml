@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: mongodb
-        image: mongo:4.4
+        image: rajesh028/mongodb:v1
 ---
 apiVersion: v1
 kind: Service
