@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
       - name: catalogue
-        image: rajesh028/catalogue:v1
+        image: nginx:latest
         envFrom:
         - configMapRef:
             name: catalogue
