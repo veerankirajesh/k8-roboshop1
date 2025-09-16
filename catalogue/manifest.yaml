@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
       - name: catalogue
-        image: joindevops/catalogue:v1
+        image: rajesh028/catalogue:v1
         envFrom:
         - configMapRef:
             name: catalogue
