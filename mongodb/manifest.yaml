@@ -2,47 +2,41 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongodb
-  namespace: roboshop   # namespace is virtual cluster inside a Kubernetes cluster
-  # deployment labels
-  labels:
-    component: mongodb
+  namespace: roboshop
+  labels: # these labels are deployment labels
+    app: mongodb
     project: roboshop
-    tier: database
+    tier: db
 spec:
   replicas: 1
-  # These are the labels replica set use to create pod replicas, this should match pod labels
   selector:
-    matchLabels:
-      component: mongodb
+    matchLabels: # these labels are used to find the pods
+      app: mongodb
       project: roboshop
-      tier: database
-  # This is pod definition
+      tier: db
   template:
     metadata:
-      labels:
-        component: mongodb
+      labels: # these labels are pod labels
+        app: mongodb
         project: roboshop
-        tier: database
+        tier: db
     spec:
       containers:
       - name: mongodb
-        image: mongo:4.4
+        image: rajesh028/mongodb:v1
+        imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: mongodb
   namespace: roboshop
-  labels:
-    component: mongodb
-    project: roboshop
-    tier: database
 spec:
   selector:
-    component: mongodb
+    app: mongodb
     project: roboshop
-    tier: database
+    tier: db
   ports:
   - protocol: TCP
-    port: 27017 # service port
-    targetPort: 27017 # container port
+    port: 27017 #service-port
+    targetPort: 27017 #container-port
