@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
       - name: catalogue
-        image: 872515251136.dkr.ecr.us-east-1.amazonaws.com/dev:latest
+        image: nginx:latest
         envFrom:
         - configMapRef:
             name: catalogue
