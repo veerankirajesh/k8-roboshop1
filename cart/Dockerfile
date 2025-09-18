@@ -18,8 +18,7 @@
 FROM node:18
 
 WORKDIR /opt/server
-COPY . .
+COPY . .      
 RUN npm install
 
 CMD ["node", "server.js"]
-
