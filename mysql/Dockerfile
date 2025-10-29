@@ -1,2 +1,2 @@
 FROM mysql:5.7
-COPY scripts/*  /docker-entrypoint-initdb.d/
+COPY db/*  /docker-entrypoint-initdb.d/
