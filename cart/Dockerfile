@@ -1,22 +1,10 @@
 FROM node:18.19.1-alpine3.19
-
-# Set working directory
-WORKDIR /opt/server
-
-# Create non-root user
+EXPOSE 8080
 RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
+WORKDIR /opt/server
 RUN chown roboshop:roboshop /opt/server
 USER roboshop
-
-# Copy package files and install dependencies
-COPY package*.json ./
+COPY package.json /opt/server/
+COPY server.js /opt/server/
 RUN npm install
-
-# Copy all source files
-COPY . .
-
-# Expose application port
-EXPOSE 8080
-
-# Start the Node app
 CMD ["node", "server.js"]
