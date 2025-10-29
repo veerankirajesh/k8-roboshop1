@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: shipping
-        image: rajesh028/shipping:v1
+        image: joindevops/shipping:v1
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
