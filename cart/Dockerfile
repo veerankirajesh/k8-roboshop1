@@ -19,4 +19,4 @@ COPY . .
 EXPOSE 8080
 
 # Start the Node app
-CMD ["node", "service.js"]
+CMD ["node", "server.js"]
